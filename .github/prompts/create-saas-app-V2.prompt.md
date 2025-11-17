@@ -24,7 +24,7 @@ The system must be modern, modular, scalable, and ready for real SaaS projects.
   * **Zustand** → lightweight client state
 
 * **Server Configuration**:
-  * **CRITICAL**: Both frontend and backend MUST run on the **same port: 3031**
+  * **CRITICAL**: Both frontend and backend MUST run on the **same port**
   * Express serves the built React app as static files
   * API routes prefixed with `/api/*`
   * All other routes serve the React SPA
@@ -113,8 +113,9 @@ My-SAAS-APP/
 ---
 
 # Visual References
-- GitHub landing pages that are clean, developer-focused (inspiration only).
-- Vercel dashboards (professional, clean, modern).  
+- GitHub landing pages (clean, developer-focused).  
+- Vercel dashboards (professional, minimal).  
+- Excalidraw (lightweight, intuitive interface).  
 
 ---
 
@@ -131,8 +132,8 @@ My-SAAS-APP/
 
 - Must replicate the **layout & style from GitHub**.  
 - Sidebar, dashboard, and other UI elements must use **shadcn/ui** components.  
-- Feature-modular and extendable → Modular and future-ready for extensions based on feature-driven development (FDD).  
-- Fully theme-aware → Dark/light theme supported out of the box.  
+- Modular and future-ready (feature-based).  
+- Dark/light theme supported out of the box.   
 
 ---
 
