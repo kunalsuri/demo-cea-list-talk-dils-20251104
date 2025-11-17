@@ -6,7 +6,7 @@
 ![SaaS](https://img.shields.io/badge/SaaS-Application-00d4ff?style=for-the-badge&logo=cloud)
 ![Modern Stack](https://img.shields.io/badge/Stack-Modern-success?style=for-the-badge&logo=stackshare)
 
-**A minimal demonstrator showing how modern SaaS apps integrate AI features using a clean React + TypeScript stack.**
+**A minimal demonstrator showing how modern SaaS apps (React + TypeScript stack) can be generated using AI-Powered Coding Systems such as Co-Pilot PRO.**
 
 [Features](#-features) • [Tech Stack](#-tech-stack) • [Getting Started](#-getting-started) • [Documentation](#-documentation)
 
