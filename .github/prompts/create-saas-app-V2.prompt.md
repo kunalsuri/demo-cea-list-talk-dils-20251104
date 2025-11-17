@@ -23,6 +23,12 @@ The system must be modern, modular, scalable, and ready for real SaaS projects.
   * **React Query** → server state
   * **Zustand** → lightweight client state
 
+* **Server Configuration**:
+  * **CRITICAL**: Both frontend and backend MUST run on the **same port: 3031**
+  * Express serves the built React app as static files
+  * API routes prefixed with `/api/*`
+  * All other routes serve the React SPA
+  * Single unified deployment on port 3031
 
 ---
 
@@ -69,9 +75,15 @@ My-SAAS-APP/
 │   └── users.json                   # User + session storage
 │   └── sessions.json
 │
+├── docs/                            # Documentation folder (REQUIRED)
+│   ├── PROJECT_STATUS.md            # Implementation status with timestamp (REQUIRED)
+│   ├── QUICKSTART.md                # Quick setup guide
+│   ├── TECHNICAL.md                 # Technical documentation
+│   └── IMPLEMENTATION_SUMMARY.md    # Architecture details
+│
 ├── package.json
 ├── tsconfig.json
-└── README.md
+└── README.md                        # Main readme (root level only)
 
 
 - Use **feature-based folders** under `/client/src/features/*` for modular development.  
@@ -253,6 +265,110 @@ Sessions must be stored **separately** from users.
 
 ---
 
+# **Server & Deployment Configuration**
+
+### **CRITICAL REQUIREMENT: Single Port Deployment**
+
+The entire application MUST run on **port 3031** with the following architecture:
+
+1. **Express Server Setup** (`server/server.ts`):
+   * Listen on port **3031**
+   * Serve built React frontend as static files
+   * Handle API routes under `/api/*` prefix
+   * Fallback to `index.html` for client-side routing (SPA)
+
+2. **Vite Configuration** (`vite.config.ts`):
+   * Build output directory: `dist/client`
+   * Configure proxy for development only (not production)
+   * Production build serves through Express
+
+3. **API Route Structure**:
+   * All backend routes MUST be prefixed with `/api/`
+   * Examples: `/api/auth/login`, `/api/users/profile`, `/api/auth/logout`
+   * Frontend calls APIs using relative paths: `/api/*`
+
+4. **Static File Serving**:
+   ```typescript
+   // In server.ts
+   app.use(express.static(path.join(__dirname, '../client')));
+   app.get('*', (req, res) => {
+     res.sendFile(path.join(__dirname, '../client/index.html'));
+   });
+   ```
+
+5. **Package.json Scripts**:
+   * `dev`: Run both frontend and backend (dev mode)
+   * `build`: Build frontend with Vite, compile backend TypeScript
+   * `start`: Run production server on port 3031
+
+**No separate frontend/backend ports in production. Everything on 3031.**
+
+---
+
+### **Documentation Organization**
+
+All documentation files MUST be placed in the `/docs/` folder, including:
+- `docs/PROJECT_STATUS.md` - Implementation status with timestamp (REQUIRED)
+- `docs/QUICKSTART.md` - Quick setup guide
+- `docs/TECHNICAL.md` - Technical documentation
+- `docs/IMPLEMENTATION_SUMMARY.md` - Architecture and design details
+
+**EXCEPTION**: Only `README.md` remains at the root level for GitHub visibility.
+
+---
+
+# **Implementation Status Tracking**
+
+### **REQUIRED: PROJECT_STATUS.md in /docs/ folder**
+
+After creating the codebase, you MUST generate a `docs/PROJECT_STATUS.md` file with the following:
+
+1. **Timestamp**: ISO 8601 format showing when the implementation was completed
+2. **Implementation Status**: Checklist of all features and components
+3. **Completed Features**: List all implemented features with ✅
+4. **Pending Items**: List any incomplete or future work with ❌
+5. **Known Issues**: Document any limitations or bugs
+6. **Testing Status**: Current state of tests (if any)
+
+**Example Structure**:
+
+```markdown
+# Project Status
+
+**Last Updated**: 2025-11-17T19:45:00Z
+
+## Implementation Status
+
+### ✅ Completed
+- [x] Project structure setup
+- [x] Frontend (React + TypeScript + Vite)
+- [x] Backend (Express + TypeScript)
+- [x] Authentication system (login/signup/logout)
+- [x] Session management
+- [x] User profile feature
+- [x] Landing page
+- [x] Dashboard
+- [x] Theme toggle (light/dark)
+- [x] File-based storage (users.json, sessions.json)
+- [x] User seeding
+
+### ❌ Pending
+- [ ] Unit tests
+- [ ] E2E tests
+- [ ] Production deployment scripts
+
+## Known Issues
+- None at this time
+
+## Notes
+- Application runs on port 3031
+- Uses JSON files for data storage (prototype only)
+```
+
+This file MUST be created in the `/docs/` folder immediately after the codebase is generated to provide clear visibility of what has been implemented.
+
+---
+
 # **Goal**
 
-Deliver a **production-grade, scalable monorepo** with modular feature folders, JSON-based storage, authentication, session handling, and a visually polished dashboard + landing page, using React + Express fully aligned with the best practices.
+Deliver a **production-grade, scalable monorepo** with modular feature folders, JSON-based storage, authentication, session handling, and a visually polished dashboard + landing page, using React + Express fully aligned with the best practices. The entire application MUST run on a single port (3031) with Express serving both the API and the built frontend.
