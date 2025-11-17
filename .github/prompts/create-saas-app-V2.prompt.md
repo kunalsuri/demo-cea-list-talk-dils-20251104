@@ -27,6 +27,7 @@ The system must be modern, modular, scalable, and ready for real SaaS projects.
 ---
 
 # **Monorepo Structure**
+
 My-SAAS-APP/
 ├── client/                          # React + TypeScript frontend
 │   └── src/
@@ -123,25 +124,38 @@ My-SAAS-APP/
 
 ---
 
-# User Profile
+# **User Profile Feature**
 
-* Implemented under `/client/src/features/user-profile/`.
-* Supports editing and saving profile data.
-* Syncs all updates to **`users.json`** under the `"users"` array.
+  Located at: `/client/src/features/user-profile/`
+  * Edit + save profile data
+  * Sync updates to `users.json` → `"users"` array
+  * Maintain full front-back separation
 
 ---
 
-### User Data Seeding (`/data/users.json`)
+# **User Data Seeding (`/data/users.json`)**
 
-The system must load with a predefined set of users stored in `users.json`.
-These users must exist **before** authentication logic runs.
+### Requirements
 
-**Seeded Users (minimum 4 entries):** based on the info in **Data Format in JSON Files** section below
+* Ensure `users.json` exists at server startup
+* Ensure **minimum 4 seeded users** exist
+* The **Admin Demo User must always remain**
+* Implement seeding in `server/seed/seedUsers.ts`
+* Run seeding before the server starts listening
 
-* Ensure the JSON file is created if missing.
-* Ensure all four default users exist at server startup.
-* Developers may expand or modify roles later (admin, manager, standard, guest).
-* The Demo Admin must never be removed automatically.
+### Seeded Users (example)
+
+```json
+{
+  "users": [
+    { "id": "admin", "name": "Tim", "email": "admin@example.com", "password": "admin123", "role": "admin" },
+    { "id": "user1", "name": "Alice", "email": "alice@example.com", "password": "user123", "role": "HR" },
+    { "id": "user2", "name": "Leo", "email": "leo@example.com", "password": "user234", "role": "IT" },
+    { "id": "manager1", "name": "Eva", "email": "eva@example.com", "password": "manager123", "role": "manager" }
+  ]
+}
+```
+*(Passwords are plaintext for prototype only.)*
 
 ---
 
