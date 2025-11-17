@@ -1,60 +1,91 @@
 # Task
 
-Act as an expert full-stack software auditor specializing in React, TypeScript, and Express-based web applications (SaaS architecture).  
-Your goal is to perform a **comprehensive deep audit** of this repository and generate a detailed report highlighting **missing or weak components**, **potential improvements**, and **state-of-the-art recommendations**.
+Act as an **expert full-stack software auditor** specializing in **React, TypeScript, and Express-based SaaS web applications**.
 
-# Context
+Your goal is to perform a **comprehensive deep audit** of the repository content provided in context and generate a detailed report highlighting:
+- **Missing or weak components**
+- **Potential improvements**
+- **State-of-the-art recommendations (2024–2025)**
+
+---
+
+## Scope & Constraints
+
+- Base your analysis **only** on the files, folders, and snippets explicitly provided in the prompt or tool context.
+- **Do not invent** modules, infrastructure, conventions, or tools that are not visible in the provided codebase.
+- If something is likely missing but not visible (e.g., no CI config shown), treat it as a **potential gap** and clearly label it as **“Not observed in provided context.”**
+
+---
+
+## Context
 
 This repository is the foundational core of a future SaaS product.  
-It must be robust, maintainable, scalable, and secure — designed for continuous feature expansion.  
-You must verify that the current implementation follows **modern 2025 standards and best practices** for:
+It must be robust, maintainable, scalable, and secure — designed for continuous feature expansion.
 
-- Code quality, architecture, and maintainability
-- Security and error handling
-- Observability (logging, monitoring, analytics)
-- DevOps readiness (CI/CD, environment configs)
-- API and backend structure
-- Frontend performance, accessibility, and state management
+You must evaluate whether the current implementation follows modern (2024–2025) practices for:
+
+- Code quality, architecture, and maintainability  
+- Security and error handling  
+- Observability (logging, monitoring, analytics)  
+- DevOps readiness (CI/CD, environment configs)  
+- API and backend structure  
+- Frontend performance, accessibility, and state management  
 - Documentation, testing, and developer experience (DX)
 
-# Instructions
+---
 
-1. Analyze **all files and folders** in the repository — including backend (Express) and frontend (React/TypeScript).
-2. Identify any **missing best-practice elements** or **improvement opportunities**.
+## Instructions
+
+1. Review the **entire provided project structure and code** (frontend React/TypeScript and backend Express/TypeScript).
+2. Identify **missing best-practice elements** and **improvement opportunities**.
 3. For each finding:
-   - **Explain the gap clearly** (what’s missing or suboptimal)
-   - **Reference the modern standard** or **common current approach (2024–2025)**
-   - **Recommend a concrete improvement** or **tool/library** to fix or enhance it.
-4. Group the results into clear sections:
-   - ✅ Core Architecture
-   - 🧩 Frontend (React + TypeScript)
-   - ⚙️ Backend (Express + TypeScript)
-   - 🧠 Security & Authentication
-   - 🧾 Logging, Monitoring & Error Handling
-   - 🧪 Testing & Quality Assurance
-   - 🚀 Performance & Scalability
-   - 📦 DevOps, CI/CD & Infrastructure
+   - Clearly explain the **gap** (what’s missing / weak / outdated).
+   - Reference the **modern standard or common approach (circa 2024–2025)** based on your training.
+   - Recommend a **concrete improvement**, pattern, or tool/library to address it  
+     (e.g., `express-rate-limit`, `helmet`, `zod`, `jest`, `react-query`, `winston`, `OpenTelemetry`).
+
+4. Group all findings into the following sections:
+
+   - ✅ Core Architecture  
+   - 🧩 Frontend (React + TypeScript)  
+   - ⚙️ Backend (Express + TypeScript)  
+   - 🧠 Security & Authentication  
+   - 🧾 Logging, Monitoring & Error Handling  
+   - 🧪 Testing & Quality Assurance  
+   - 🚀 Performance & Scalability  
+   - 📦 DevOps, CI/CD & Infrastructure  
    - 📘 Documentation & Developer Experience
 
-# Additional Requirements
+---
 
-- Follow current **state-of-the-art** references from leading engineering sources (Google, Meta, OpenAI, GitHub, AWS, Vercel).
-- Use **concrete examples** (e.g., “implement rate limiting with `express-rate-limit`” or “add runtime schema validation using `zod`”).
-- Highlight **critical missing components** in bold with a ⚠️ symbol.
-- Mention **optional modern enhancements** with 💡 symbols.
+## Severity & Icons
 
-# Output Format
+- Mark **critical missing components** with **⚠️** and make them bold in the text.  
+- Mark **optional modern enhancements** with **💡**.
+
+Optionally, you may tag each finding with a severity level: `Critical`, `High`, `Medium`, `Low`.
+
+---
+
+## Output Format
 
 Generate a well-structured Markdown report titled:
+
 **“Full-Stack SaaS Readiness Audit — React + TypeScript + Express (2025 Edition)”**
 
-Each section should include:
+For **each section**, include:
 
-- Summary paragraph
-- Table of detected gaps or opportunities
-- Recommended fixes with brief justifications
-- Example snippets where relevant
+1. **Short summary paragraph** of the current state based on the provided code.  
+2. A **table of detected gaps or opportunities** with columns like:
+   - `Area`
+   - `Issue / Gap`
+   - `Severity`
+   - `Recommendation`
+3. **Recommended fixes** with brief justifications.  
+4. Small **example snippets** only where they clarify the recommendation (avoid excessive boilerplate).
 
-# Goal
+---
 
-Deliver a complete gap analysis so that this repository can become a **gold-standard, future-proof foundation** for scalable SaaS development.
+## Goal
+
+Deliver a realistic, actionable **gap analysis** so this repository can evolve into a **gold-standard, future-proof foundation** for scalable SaaS development, without guessing beyond the provided context.
