@@ -119,8 +119,8 @@ My-SAAS-APP/
 
 - Must replicate the **layout & style from GitHub**.  
 - Sidebar, dashboard, and other UI elements must use **shadcn/ui** components.  
-- Feature-modular and extendable: Modular and future-ready for extensions based on feature-driven development (FDD).  
-- Fully theme-aware : Dark/light theme supported out of the box.  
+- Feature-modular and extendable → Modular and future-ready for extensions based on feature-driven development (FDD).  
+- Fully theme-aware → Dark/light theme supported out of the box.  
 
 ---
 
@@ -159,24 +159,30 @@ My-SAAS-APP/
 
 ---
 
-### Authentication
-- Login & signup pages.  
-- Protected dashboard only accessible after login.  
-- Store **users and session data** in `/data/users.json`.
-- Update JSON dynamically for CRUD operations.  
+# **Authentication System**
 
-#### Login Page Requirements
+### **General**
 
-* Must include:
+* Login + signup pages.  
+* Protected dashboard only accessible after login.  
+* Store **users** in `users.json`
+* Store **sessions** in `sessions.json`
+* Use HTTP-only cookies to store `sessionId`
+* Update JSON dynamically for CRUD operations.  
 
-  * Username/email field
-  * Password field
+## **Login Page Requirements**
+
+* Must include Fields:
+
+  * Username/email
+  * Password
   * **Login** button
   * **Demo** button (auto-login using seeded admin)
 * On login:
 
-  * Read the matching user from **`users.json`**
+  * Validate credentials → Read the matching user from **`users.json`**
   * If valid, create a new session entry in **`sessions.json`**
+  * Set cookie with `sessionId`
   * Redirect to the protected dashboard
 * Invalid credentials must show a clear UI error state.
 
@@ -187,106 +193,26 @@ My-SAAS-APP/
 * Must include:
 
   * Name
-  * Email/username
+  * Email
+  * username
   * Password
   * Confirm password
   * Signup button
 * On signup:
 
-  * Validate the payload
-  * Add a new user entry to **`users.json`** under `"users"`
-  * Assign default role `"standard"`
-  * Generate a unique id
-  * Ensure no seeded accounts are overwritten
+* Validate the payload
+* Assign default role `"standard"`
+* Add a new user entry to **`users.json`** under `"users"` array
+* Generate unique `id`
+* Must not overwrite seeded accounts
 
+---
 
-#### Session Handling (`/data/sessions.json`)
+# Session Handling (`/data/sessions.json`)
 
 Sessions must be stored **separately** from users.
 
-##### On Login
-
-* Create a session object in **`sessions.json`**:
-
-  * `sessionId`
-  * `userId`
-  * `createdAt` timestamp
-  * `demo: true/false`
-
-##### On Logout
-
-* Remove the session entry for that `sessionId`.
-
-### Demo Session
-
-* When the **Demo** button is clicked:
-
-  * Auto-authenticate using the Admin user in `users.json`
-  * Create a session inside `sessions.json` with `"demo": true`
-  * Redirect to dashboard
-
----
-
-### Protected Routes
-
-* Dashboard and internal pages require:
-
-  * A valid session inside `sessions.json`
-* If no session is found:
-
-  * Redirect to login page immediately.
-
-
-
-
-
-
-
-
----
-
-## Data Format in JSON Files
-
-### `users.json`
-
-```json
-{
-  "users": [
-    {
-      "id": "admin",
-      "name": "Tim",
-      "email": "admin@example.com",
-      "password": "admin123",
-      "role": "admin"
-    },
-    {
-      "id": "user1",
-      "name": "Alice",
-      "email": "alice@example.com",
-      "password": "user123",
-      "role": "HR"
-    },
-    {
-      "id": "user2",
-      "name": "Leo",
-      "email": "leo@example.com",
-      "password": "user234",
-      "role": "IT"
-    },
-    {
-      "id": "manager1",
-      "name": "Eva",
-      "email": "eva@example.com",
-      "password": "manager123",
-      "role": "manager"
-    }
-  ]
-}
-```
-
----
-
-### `sessions.json`
+### Required Structure
 
 ```json
 {
@@ -300,15 +226,33 @@ Sessions must be stored **separately** from users.
   ]
 }
 ```
+### On Login
+
+* Append new session
+* Set cookie
+
+### On Logout
+
+* Remove session by `sessionId`
+
+### Demo Session
+
+* When the **Demo** button is clicked:
+
+  * Auto-authenticate using the admin user in `users.json`
+  * Create a session inside `sessions.json` with `"demo": true`
+  * Redirect to dashboard
 
 ---
 
-#### Notes for sessions.json`
+# **Protected Routes**
 
-* All login actions must write entries to `sessions.json`.
-* All logout actions must remove entries from `sessions.json`.
-* Demo login must set `"demo": true`.
+* Dashboard + internal pages require valid session
+* Validate via cookie → check `sessions.json`
+* Missing/invalid session 
 
 ---
 
-**Goal**: Deliver a **production-grade, scalable monorepo** with modular feature folders, JSON-based storage, authentication, and a visually polished dashboard + landing page, fully aligned with the style guide.  
+# **Goal**
+
+Deliver a **production-grade, scalable monorepo** with modular feature folders, JSON-based storage, authentication, session handling, and a visually polished dashboard + landing page, using React + Express fully aligned with the best practices.
