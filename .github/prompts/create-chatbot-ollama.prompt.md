@@ -1,4 +1,11 @@
-Act as a senior full-stack AI engineer for a production-grade SaaS web application built with React, TypeScript, and a Node.js backend. Implement a new feature named **Chat Ollama** that integrates interaction with a locally running LLM served by **Ollama** into the existing app.
+---
+mode: 'agent'
+description: ' Implement a new feature called Chat Ollama'
+---
+
+# **Role**
+
+Act as a **Coding LLM** with the role of an **expert full-stack engineer** for building a **feature-based**, production-grade SaaS web application having React, TypeScript, and a Node.js as tech stack. Implement a new feature named **Chat Ollama** that integrates interaction with a locally running LLM served by **Ollama** into the existing app.
 
 **Role**
 
