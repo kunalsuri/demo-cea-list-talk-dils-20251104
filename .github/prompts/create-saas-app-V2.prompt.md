@@ -24,11 +24,8 @@ The system must be modern, modular, scalable, and ready for real SaaS projects.
   * **Zustand** → lightweight client state
 
 * **Server Configuration**:
-  * **CRITICAL**: Both frontend and backend MUST run on the **same port**
+  * **CRITICAL**: Both frontend and backend MUST run on the **same port** 3031 for ease of development
   * Express serves the built React app as static files
-  * API routes prefixed with `/api/*`
-  * All other routes serve the React SPA
-  * Single unified deployment on port 3031
 
 ---
 
@@ -298,7 +295,7 @@ The entire application MUST run on **port 3031** with the following architecture
    ```
 
 5. **Package.json Scripts**:
-   * `dev`: Run both frontend and backend (dev mode)
+   * `dev`: Run both frontend and backend on the same port 3031 (dev mode)
    * `build`: Build frontend with Vite, compile backend TypeScript
    * `start`: Run production server on port 3031
 
@@ -310,15 +307,9 @@ The entire application MUST run on **port 3031** with the following architecture
 
 All documentation files MUST be placed in the `/docs/` folder, including:
 - `docs/PROJECT_STATUS.md` - Implementation status with timestamp (REQUIRED)
-- `docs/QUICKSTART.md` - Quick setup guide
-- `docs/TECHNICAL.md` - Technical documentation
-- `docs/IMPLEMENTATION_SUMMARY.md` - Architecture and design details
-
 **EXCEPTION**: Only `README.md` remains at the root level for GitHub visibility.
 
----
-
-# **Implementation Status Tracking**
+## **Implementation Status Tracking**
 
 ### **REQUIRED: PROJECT_STATUS.md in /docs/ folder**
 
@@ -373,3 +364,5 @@ This file MUST be created in the `/docs/` folder immediately after the codebase 
 # **Goal**
 
 Deliver a **production-grade, scalable monorepo** with modular feature folders, JSON-based storage, authentication, session handling, and a visually polished dashboard + landing page, using React + Express fully aligned with the best practices. The entire application MUST run on a single port (3031) with Express serving both the API and the built frontend.
+
+---
