@@ -1,12 +1,12 @@
 ---
 mode: 'agent'
-description: 'Build My-SAAS-APP – A Full-Stack Feature-Driven SaaS Template with React, TypeScript & Express'
+description: 'Build My-SAAS-APP – A Full-Stack Feature-Driven SaaS application with React, TypeScript & Express'
 ---
 
 # **Role**
 
-Act as a **Coding LLM** with the role of an **expert full-stack engineer** building a **feature-based SaaS template** named **My-SAAS-APP**.
-The system must be modern, modular, scalable, and ready for real SaaS projects.
+Act as a **Coding LLM** with the role of an **expert full-stack engineer** building a **feature-based SaaS appliation**.
+The application must be modern, modular, scalable, and ready for real SaaS projects.
 
 ---
 
@@ -44,7 +44,7 @@ My-SAAS-APP/
 │       │   ├── Landing.tsx
 │       │   ├── Login.tsx
 │       │   ├── Signup.tsx
-│       │   └── Dashboard.tsx
+│       │   └── Dashboard.tsx        # Modern, latest with collapsable sidebar
 │       ├── lib/                     # Client utilities
 │       │   ├── api.ts               # API calls (fetch wrappers)
 │       │   └── state.ts             # Zustand/React Query setup
@@ -111,7 +111,7 @@ My-SAAS-APP/
 
 # Visual References
 - GitHub landing pages (clean, developer-focused).  
-- Vercel dashboards (professional, minimal).  
+- Vercel dashboard (professional, minimal). Modern, and latest with collapsable sidebar.
 - Excalidraw (lightweight, intuitive interface).  
 
 ---
